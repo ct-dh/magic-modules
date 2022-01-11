@@ -1468,6 +1468,14 @@ overrides: !ruby/object:Overrides::ResourceOverrides
           neg_name: "my-lb-neg"
           network_name: "neg-network"
           subnetwork_name: "neg-subnetwork"
+      - !ruby/object:Provider::Terraform::Examples
+        name: "hybrid_network_endpoint_group"
+        primary_resource_id: "hybrid-neg"
+        vars:
+          neg_name: "my-hybrid-neg"
+          network_name: "neg-network"
+          zone: "europe-west1-c"
+          type: "NON_GCP_PRIVATE_IP_PORT"
     properties:
       id: !ruby/object:Overrides::Terraform::PropertyOverride
         exclude: true

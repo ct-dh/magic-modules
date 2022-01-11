@@ -873,7 +873,8 @@ objects:
 
                 For Network Endpoint Groups this defines list of endpoints. All
                 endpoints of Network Endpoint Group must be hosted on instances
-                located in the same zone as the Network Endpoint Group.
+                located in the same zone as the Network Endpoint Group. All
+                Network Endpoint Groups must have the same type.
 
                 Backend services cannot mix Instance Group and
                 Network Endpoint Group backends.
@@ -8101,7 +8102,7 @@ objects:
           The name for a specific VM instance that the IP address belongs to.
           This is required for network endpoints of type GCE_VM_IP_PORT.
           The instance must be in the same zone of network endpoint group.
-        required: true
+        required: false
       - !ruby/object:Api::Type::Integer
         name: 'port'
         description: |
@@ -8193,6 +8194,7 @@ objects:
           Type of network endpoints in this network endpoint group.
         values:
           - :GCE_VM_IP_PORT
+          - :NON_GCP_PRIVATE_IP_PORT
         default_value: :GCE_VM_IP_PORT
       - !ruby/object:Api::Type::Integer
         name: 'size'
@@ -8211,7 +8213,7 @@ objects:
         resource: 'Subnetwork'
         imports: 'selfLink'
         description: |
-          Optional subnetwork to which all network endpoints in the NEG belong.
+          Optional subnetwork to which all network endpoints in the NEG belong (only specified if `networkEndpointType` is `:GCP_VM_IP_PORT`).
       - !ruby/object:Api::Type::Integer
         name: 'defaultPort'
         description: |
